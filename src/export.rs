@@ -4,28 +4,13 @@ use std::path::Path;
 
 pub fn export_to_markdown(texts: &[String], output: &Path) -> std::io::Result<()> {
     let mut file = File::create(output)?;
-    writeln!(file, "# Распознанный тест")?;
     
-    for (i, text) in texts.iter().enumerate() {
-        writeln!(file, "## Вопрос {}:", i + 1)?;
-        writeln!(file, "{}", text.replace("•", "-"))?;
-        writeln!(file)?;
+    // ✅ ЧИСТЫЙ ТЕКСТ - без "# Распознанный тест" и "## Вопрос"
+    for text in texts {
+        if !text.trim().is_empty() {
+            writeln!(file, "{}", text.trim())?;
+            writeln!(file)?;  // Пустая строка между блоками
+        }
     }
-    Ok(())
-}
-
-pub fn export_to_latex(texts: &[String], output: &Path) -> std::io::Result<()> {
-    let mut file = File::create(output)?;
-    writeln!(file, r#"\documentclass{{article}}"#)?;
-    writeln!(file, r#"\usepackage[utf8]{{inputenc}}"#)?;
-    writeln!(file, r#"\usepackage[russian]{{babel}}"#)?;
-    writeln!(file, r#"\begin{{document}}"#)?;
-    
-    for (i, text) in texts.iter().enumerate() {
-        writeln!(file, r#"\subsection{{Вопрос {}}}"#, i + 1)?;
-        writeln!(file, "{}", text.replace("-", r"$\bullet$"))?;
-    }
-    
-    writeln!(file, r#"\end{{document}}"#)?;
     Ok(())
 }
