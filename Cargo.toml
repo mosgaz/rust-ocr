@@ -7,6 +7,10 @@ edition = "2021"
 name = "ocr-scan"
 path = "src/main.rs"
 
+[[test]]
+name = "integration"
+path = "tests/integration.rs"
+
 [dependencies]
 image = "0.25"
 clap = { version = "4.5", features = ["derive"] }
@@ -14,3 +18,4 @@ serde = { version = "1.0", features = ["derive"] }
 thiserror = "1.0"
 docx-rs = "0.4"
 rusty-tesseract = "1.1.10"
+dotenvy = "0.15.7"

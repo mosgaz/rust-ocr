@@ -149,4 +149,10 @@ cargo init --bin
 cargo build --release
 ```
 
+## 💾 **Запуск тестов**
+
+```bash
+cargo test
+```
+
 **🚀 ПРОЕКТ ГОТОВ!** Сканируйте учебник → `./scripts/batch_ocr.sh` → печатайте копии!
